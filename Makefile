@@ -1,10 +1,11 @@
 CXX=g++
-CFLAGS=-std=c++14 -g -msse2 -msse -march=native -maes
-LIBS= -lssl -lcrypto
+LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+CFLAGS=-std=c++14 -g -msse2 -msse -maes "-I/opt/homebrew/opt/openssl@1.1/include"
+LIBS=  -lcrypto
 OBJ = main.o
 
 all: $(OBJ)
-	$(CXX) $(CFLAGS) $(OBJ) -o decryptimg3 $(LIBS)
+	$(CXX) $(CFLAGS) $(LDFLAGS) $(OBJ) -o decryptimg3 $(LIBS)
 
 clean:
 	rm *.o && rm decryptimg3
